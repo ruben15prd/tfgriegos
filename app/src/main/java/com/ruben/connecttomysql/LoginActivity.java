@@ -1,18 +1,13 @@
 package com.ruben.connecttomysql;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final String url= "jdbc:mysql://138.68.102.13:3306/TFGRIEGOS";
     private static final String user = "prueba";
     private static final String pass = "irrigadino";
@@ -35,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         //Inicializamos los elementos de la interfaz
         nombre = (TextView) findViewById(R.id.textView);
@@ -88,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                errores = LoginUtils.compruebaErroresLogin(MainActivity.this);
+                errores = LoginUtils.compruebaErroresLogin(LoginActivity.this);
                 //Log.d("Debug", "Tamaño de la lista de errores: " + errores.size());
                 if(errores.size()==0){
                     Statement st = con.createStatement();
@@ -134,16 +129,16 @@ public class MainActivity extends AppCompatActivity {
             //contrasenya.setText(contra);
 
             // Comprobamos y visualizamos los errores en caso de que fuera necesario
-            errores = LoginUtils.compruebaErroresLogin(MainActivity.this);
-            LoginUtils.visualizaErroresLogin(MainActivity.this);
-            LoginUtils.visualizaErroresUsuarioValido(MainActivity.this,usuarioValido);
+            errores = LoginUtils.compruebaErroresLogin(LoginActivity.this);
+            LoginUtils.visualizaErroresLogin(LoginActivity.this);
+            LoginUtils.visualizaErroresUsuarioValido(LoginActivity.this,usuarioValido);
 
 
             if(errores.size()>0 || usuarioValido==false){
                 return;
             }else{
                 // Si ha ido correctamente lo llevamos a la nueva ventana
-                Intent irActivity2 = new Intent (MainActivity.this, Main2Activity.class);
+                Intent irActivity2 = new Intent (LoginActivity.this, ListFarmsActivity.class);
                 startActivity(irActivity2);
             }
 

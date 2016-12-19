@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class displayFarmActivity extends AppCompatActivity {
+public class DisplayFarmActivity extends AppCompatActivity {
     // Declaramos los elementos
     private TextView nombreTv;
     private TextView latitudTv;

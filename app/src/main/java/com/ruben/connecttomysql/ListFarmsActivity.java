@@ -4,22 +4,17 @@ import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main2Activity extends AppCompatActivity {
+public class ListFarmsActivity extends AppCompatActivity {
     private ListView listView;
     private Integer id;
     private String name;
@@ -30,7 +25,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_list_farms);
 
         // Permitimos que se puedan realizar peticiones en la ui de la activity
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -91,7 +86,7 @@ public class Main2Activity extends AppCompatActivity {
 
                 Farm farm =(Farm) adapter.getItem(position);
 
-                Intent intent = new Intent(Main2Activity.this, displayFarmActivity.class);
+                Intent intent = new Intent(ListFarmsActivity.this, DisplayFarmActivity.class);
                 intent.putExtra("farm", farm);
                 startActivity(intent);
             }
