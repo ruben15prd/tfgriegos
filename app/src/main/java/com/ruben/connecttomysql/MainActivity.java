@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText nombreLogin,contrasenyaLogin;
 
     boolean usuarioValido;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new MyTask2().execute();
+                new Loguearse().execute();
             }
         });
 
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Ejecutamos de forma asincrona, las acciones del boton login
-    private class MyTask2 extends AsyncTask<Void,Void,Void>{
+    private class Loguearse extends AsyncTask<Void,Void,Void>{
         private String nom="",nomEditText="",contra="",contraEditText="";
 
         @Override
@@ -91,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 //Log.d("Debug", "Tamaño de la lista de errores: " + errores.size());
                 if(errores.size()==0){
                     Statement st = con.createStatement();
+
+                    //Guardamos la conexion que usaremos en la aplicacion
+                    ConnectionUtils.setStatement(st);
+
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
                     //Log.d("Debug", "Antes de la consulta la contraseña: " + contraEditText);
                     String sql = "select * from PROPIETARY where name ='"+nomEditText+"' and password='"+contraEditText+"'";
@@ -100,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
                     //rs.next();
 
                     while(rs.next()) {
+                        //Guardamos la id del usuario logueado para asi no tener que pasarla por parametros entre actividades
+                        int userId;
+
+                        userId = rs.getInt(1);
+                        ConnectionUtils.setUserId(userId);
+
                         nom=rs.getString(3);
                         contra=rs.getString(4);
                         // Comprobamos si las credenciales que ha introducido son validas
@@ -108,9 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d("Debug", "He entrado");
                     }
 
-
                 }
-
 
             }catch(Exception e){
                 e.printStackTrace();

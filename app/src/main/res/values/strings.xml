@@ -5,5 +5,9 @@
     <string name="usuario">Usuario</string>
     <string name="contrasenya">Contraseña</string>
     <string name="boton_login">Loguearse</string>
-    <string name="actividad_2">Actividad 2</string>
+    <string name="lista_farms">Listar farms</string>
+    <string name="display_farm">Ver farm</string>
+    <string name="nombre_farm">Nombre: </string>
+    <string name="latitude_farm">Latitud: </string>
+    <string name="longitude_farm">Longitud: </string>
 </resources>
