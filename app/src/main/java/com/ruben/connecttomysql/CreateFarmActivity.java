@@ -8,53 +8,36 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditFarmActivity extends AppCompatActivity {
+public class CreateFarmActivity extends AppCompatActivity {
     // Declaramos los elementos
     private EditText nombreEt;
     private EditText latitudEt;
     private EditText longitudEt;
-    private Integer farmId;
-    private Farm farm;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_farm);
 
+
         //Instanciamos los elementos
         nombreEt = (EditText) findViewById(R.id.editText3);
         latitudEt = (EditText) findViewById(R.id.editText4);
         longitudEt = (EditText) findViewById(R.id.editText5);
 
-        //Obtenemos la farm pasada por parametro
-        farm =(Farm) getIntent().getSerializableExtra("farm");
-
-        //Cargamos los valores a mostrar
-
-        nombreEt.setText(farm.getName());
-        latitudEt.setText(farm.getLatitude().toString());
-        longitudEt.setText(farm.getLongitude().toString());
-
-        farmId= farm.getId();
-        Log.d("Debug", "Farm id: " + farmId);
         Button buttonAceptar = (Button) findViewById(R.id.button3);
-
-
         //Definimos el comportamiento del boton aceptar
         buttonAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EditarFarm().execute();
+                new CreateFarmActivity.CreateFarm().execute();
             }
         });
 
@@ -62,7 +45,7 @@ public class EditFarmActivity extends AppCompatActivity {
 
 
     // Ejecutamos de forma asincrona, las acciones del boton aceptar
-    private class EditarFarm extends AsyncTask<Void,Void,Void> {
+    private class CreateFarm extends AsyncTask<Void,Void,Void> {
         private String nombre="";
         private Double latitud;
         private Double longitud;
@@ -95,7 +78,7 @@ public class EditFarmActivity extends AppCompatActivity {
                     }
                 });
 
-                errores = FarmUtils.compruebaErrores(EditFarmActivity.this);
+                errores = FarmUtils.compruebaErrores(CreateFarmActivity.this);
                 if(errores.size()==0){
                     Statement st = con.createStatement();
 
@@ -104,7 +87,7 @@ public class EditFarmActivity extends AppCompatActivity {
 
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
                     //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud+",farmId:"+farmId);
-                    String sql = "update FARM set name='"+nombre + "',latitude="+latitud+",longitude="+longitud+" where id="+farmId;
+                    String sql = "insert into FARM (name,latitude,longitude,id_propietary) VALUES ('"+nombre+"',"+latitud+","+longitud+","+ConnectionUtils.getUserId()+ ")";
                     //Realizamos la consulta contra la base de datos
                     st.executeUpdate(sql);
 
@@ -125,15 +108,15 @@ public class EditFarmActivity extends AppCompatActivity {
             List<String> errores;
 
             // Comprobamos y visualizamos los errores en caso de que fuera necesario
-            errores = FarmUtils.compruebaErrores(EditFarmActivity.this);
-            FarmUtils.visualizaErrores(EditFarmActivity.this,errores);
+            errores = FarmUtils.compruebaErrores(CreateFarmActivity.this);
+            FarmUtils.visualizaErrores(CreateFarmActivity.this,errores);
 
 
             if(errores.size()>0){
                 return;
             }else{
                 // Si ha ido correctamente lo llevamos a la nueva ventana
-                Intent intent = new Intent (EditFarmActivity.this, ListFarmsActivity.class);
+                Intent intent = new Intent (CreateFarmActivity.this, ListFarmsActivity.class);
 
                 //intent.putExtra("farm", farm);
                 startActivity(intent);
@@ -145,7 +128,6 @@ public class EditFarmActivity extends AppCompatActivity {
             super.onPostExecute(result);
         }
     }
-
 
     }
 

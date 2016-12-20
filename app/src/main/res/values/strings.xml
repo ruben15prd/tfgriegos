@@ -12,4 +12,5 @@
     <string name="longitude_farm">Longitud: </string>
     <string name="editar">Editar</string>
     <string name="aceptar">Aceptar</string>
+    <string name="crear">Crear</string>
 </resources>

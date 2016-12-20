@@ -138,8 +138,8 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }else{
                 // Si ha ido correctamente lo llevamos a la nueva ventana
-                Intent irActivity2 = new Intent (LoginActivity.this, ListFarmsActivity.class);
-                startActivity(irActivity2);
+                Intent intent = new Intent (LoginActivity.this, ListFarmsActivity.class);
+                startActivity(intent);
             }
 
 

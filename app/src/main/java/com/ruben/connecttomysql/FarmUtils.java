@@ -26,22 +26,18 @@ public class FarmUtils {
 
         nombreStr = nombre.getText().toString();
 
-        //Parseamos a double los valores si fueran distintos de null
-
-
-
         //Comprobamos las restricciones del dominio
         if (nombreStr.matches("")) {
             errores.add("Debes introducir un nombre");
         }
-        if(latitud!=null){
+        if(!latitud.getText().toString().isEmpty()){
             latitudD = Double.parseDouble(latitud.getText().toString());
             if(latitudD <-90.0 || latitudD >90.0 ){
                 errores.add("La latitud debe estar entre -90.0 y 90.0");
             }
 
         }
-        if(longitud!=null){
+        if(!longitud.getText().toString().isEmpty()){
            longitudD = Double.parseDouble(longitud.getText().toString());
             if(longitudD <-180.0 || longitudD >180.0 ){
                 errores.add("La latitud debe estar entre -180.0 y 180.0");

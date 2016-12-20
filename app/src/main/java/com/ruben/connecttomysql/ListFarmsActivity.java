@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.sql.ResultSet;
@@ -89,6 +90,20 @@ public class ListFarmsActivity extends AppCompatActivity {
                 Intent intent = new Intent(ListFarmsActivity.this, DisplayFarmActivity.class);
                 intent.putExtra("farm", farm);
                 startActivity(intent);
+            }
+        });
+
+
+
+        Button buttonCreateFarm = (Button) findViewById(R.id.button4);
+
+        buttonCreateFarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent (ListFarmsActivity.this, CreateFarmActivity.class);
+                startActivity(intent);
+
             }
         });
 
