@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
 
             // Comprobamos y visualizamos los errores en caso de que fuera necesario
             errores = LoginUtils.compruebaErroresLogin(LoginActivity.this);
-            LoginUtils.visualizaErroresLogin(LoginActivity.this);
+            LoginUtils.visualizaErroresLogin(LoginActivity.this,errores);
             LoginUtils.visualizaErroresUsuarioValido(LoginActivity.this,usuarioValido);
 
 

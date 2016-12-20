@@ -68,4 +68,13 @@
         android:layout_alignLeft="@+id/textView9"
         android:layout_alignStart="@+id/textView9"
         android:id="@+id/textView10" />
+
+    <Button
+        android:text="@string/editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/button" />
 </RelativeLayout>

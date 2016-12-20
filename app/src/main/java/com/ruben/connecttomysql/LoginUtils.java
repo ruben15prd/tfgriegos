@@ -34,23 +34,14 @@ public  class LoginUtils {
         return errores;
     }
 
-    public static void visualizaErroresLogin(Activity activity) {
-        EditText nombre, contrasenya;
-        String nombreStr, contrasenyaStr;
+    public static void visualizaErroresLogin(Activity activity, List<String> errores) {
 
-        nombre = (EditText) activity.findViewById(R.id.editText);
-        contrasenya = (EditText) activity.findViewById(R.id.editText2);
 
-        nombreStr = nombre.getText().toString();
-        contrasenyaStr = contrasenya.getText().toString();
-
-        if (nombreStr.matches("")) {
-            Toast.makeText(activity.getApplicationContext(), "Debes introducir un nombre", Toast.LENGTH_SHORT).show();
+        for(String error: errores){
+            Toast.makeText(activity.getApplicationContext(), error, Toast.LENGTH_SHORT).show();
         }
-        if (contrasenyaStr.matches("")) {
-            Toast.makeText(activity.getApplicationContext(), "Debes introducir una contraseña", Toast.LENGTH_SHORT).show();
 
-        }
+
     }
 
     public static boolean compruebaUsuarioValido(String nombreEditText, String contrasenyaEditText, String nombreConsulta, String contrasenyaConsulta) {
