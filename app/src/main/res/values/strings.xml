@@ -13,4 +13,8 @@
     <string name="editar">Editar</string>
     <string name="aceptar">Aceptar</string>
     <string name="crear">Crear</string>
+    <string name="lista_plots">Listar plots</string>
+    <string name="nombre_plot">Nombre: </string>
+    <string name="bomba_activada">Bomba de agua: </string>
+    <string name="display_plot">Ver plot</string>
 </resources>

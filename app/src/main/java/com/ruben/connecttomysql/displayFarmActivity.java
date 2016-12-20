@@ -3,6 +3,7 @@ package com.ruben.connecttomysql;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,6 +45,21 @@ public class DisplayFarmActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+        Button buttonListarPlots= (Button) findViewById(R.id.button5);
+
+
+        buttonListarPlots.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayFarmActivity.this, ListPlotsActivity.class);
+                intent.putExtra("idFarm", farm.getId());
+                startActivity(intent);
+            }
+        });
+
 
 
     }

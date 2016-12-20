@@ -20,7 +20,10 @@
         <activity android:name=".ListFarmsActivity" />
         <activity android:name=".DisplayFarmActivity" />
         <activity android:name=".EditFarmActivity" />
-        <activity android:name=".CreateFarmActivity"></activity>
+        <activity android:name=".CreateFarmActivity" />
+        <activity android:name=".ListPlotsActivity" />
+        <activity android:name=".DisplayPlotActivity" />
+        <activity android:name=".EditPlotActivity"></activity>
     </application>
 
 </manifest>
