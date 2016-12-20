@@ -21,8 +21,8 @@ public class FarmUtils {
 
         errores = new ArrayList<String>();
         nombre = (EditText) activity.findViewById(R.id.editText3);
-        latitud = (EditText) activity.findViewById(R.id.editText4);
-        longitud = (EditText) activity.findViewById(R.id.editText5);
+        latitud = (EditText) activity.findViewById(R.id.editText6);
+        longitud = (EditText) activity.findViewById(R.id.editText4);
 
         nombreStr = nombre.getText().toString();
 

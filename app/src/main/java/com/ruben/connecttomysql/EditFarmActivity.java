@@ -33,8 +33,8 @@ public class EditFarmActivity extends AppCompatActivity {
 
         //Instanciamos los elementos
         nombreEt = (EditText) findViewById(R.id.editText3);
-        latitudEt = (EditText) findViewById(R.id.editText4);
-        longitudEt = (EditText) findViewById(R.id.editText5);
+        latitudEt = (EditText) findViewById(R.id.editText6);
+        longitudEt = (EditText) findViewById(R.id.editText4);
 
         //Obtenemos la farm pasada por parametro
         farm =(Farm) getIntent().getSerializableExtra("farm");
@@ -64,8 +64,8 @@ public class EditFarmActivity extends AppCompatActivity {
     // Ejecutamos de forma asincrona, las acciones del boton aceptar
     private class EditarFarm extends AsyncTask<Void,Void,Void> {
         private String nombre="";
-        private Double latitud;
-        private Double longitud;
+        private Double latitud=null;
+        private Double longitud=null;
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -83,9 +83,13 @@ public class EditFarmActivity extends AppCompatActivity {
 
                         //Obtenemos el texto de los campos que ha introducido el usuario
                         nombre = nombreEt.getText().toString();
-                        latitud= Double.parseDouble(latitudEt.getText().toString());
-                        longitud = Double.parseDouble(longitudEt.getText().toString());
 
+                        if(!latitudEt.getText().toString().isEmpty()) {
+                            latitud = Double.parseDouble(latitudEt.getText().toString());
+                        }
+                        if(!longitudEt.getText().toString().isEmpty()) {
+                            longitud = Double.parseDouble(longitudEt.getText().toString());
+                        }
 
 
 

@@ -29,8 +29,8 @@ public class CreateFarmActivity extends AppCompatActivity {
 
         //Instanciamos los elementos
         nombreEt = (EditText) findViewById(R.id.editText3);
-        latitudEt = (EditText) findViewById(R.id.editText4);
-        longitudEt = (EditText) findViewById(R.id.editText5);
+        latitudEt = (EditText) findViewById(R.id.editText6);
+        longitudEt = (EditText) findViewById(R.id.editText4);
 
         Button buttonAceptar = (Button) findViewById(R.id.button3);
         //Definimos el comportamiento del boton aceptar
@@ -47,8 +47,8 @@ public class CreateFarmActivity extends AppCompatActivity {
     // Ejecutamos de forma asincrona, las acciones del boton aceptar
     private class CreateFarm extends AsyncTask<Void,Void,Void> {
         private String nombre="";
-        private Double latitud;
-        private Double longitud;
+        private Double latitud=null;
+        private Double longitud=null;
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -66,8 +66,13 @@ public class CreateFarmActivity extends AppCompatActivity {
 
                         //Obtenemos el texto de los campos que ha introducido el usuario
                         nombre = nombreEt.getText().toString();
-                        latitud= Double.parseDouble(latitudEt.getText().toString());
-                        longitud = Double.parseDouble(longitudEt.getText().toString());
+                        if(!latitudEt.getText().toString().isEmpty()){
+                            latitud= Double.parseDouble(latitudEt.getText().toString());
+                        }
+
+                        if(!longitudEt.getText().toString().isEmpty()) {
+                            longitud = Double.parseDouble(longitudEt.getText().toString());
+                        }
 
 
 
@@ -86,7 +91,7 @@ public class CreateFarmActivity extends AppCompatActivity {
                     ConnectionUtils.setStatement(st);
 
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
-                    //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud+",farmId:"+farmId);
+                    //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud);
                     String sql = "insert into FARM (name,latitude,longitude,id_propietary) VALUES ('"+nombre+"',"+latitud+","+longitud+","+ConnectionUtils.getUserId()+ ")";
                     //Realizamos la consulta contra la base de datos
                     st.executeUpdate(sql);
