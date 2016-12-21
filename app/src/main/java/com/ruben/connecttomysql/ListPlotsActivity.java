@@ -22,6 +22,7 @@ public class ListPlotsActivity extends AppCompatActivity {
     private String name;
     private Boolean waterPump;
     private Integer idFarm2;
+    private Plot plot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,11 +90,24 @@ public class ListPlotsActivity extends AppCompatActivity {
                                     long id) {
 
 
-                Plot plot =(Plot) adapter.getItem(position);
+                plot =(Plot) adapter.getItem(position);
 
                 Intent intent = new Intent(ListPlotsActivity.this, DisplayPlotActivity.class);
                 intent.putExtra("plot", plot);
                 startActivity(intent);
+            }
+        });
+
+        Button buttonCreatePlot = (Button) findViewById(R.id.buttonCrearPlot);
+
+        buttonCreatePlot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent (ListPlotsActivity.this, CreatePlotActivity.class);
+                intent.putExtra("idFarm", idFarm);
+                startActivity(intent);
+
             }
         });
 

@@ -23,7 +23,8 @@
         <activity android:name=".CreateFarmActivity" />
         <activity android:name=".ListPlotsActivity" />
         <activity android:name=".DisplayPlotActivity" />
-        <activity android:name=".EditPlotActivity"></activity>
+        <activity android:name=".EditPlotActivity" />
+        <activity android:name=".CreatePlotActivity"></activity>
     </application>
 
 </manifest>
