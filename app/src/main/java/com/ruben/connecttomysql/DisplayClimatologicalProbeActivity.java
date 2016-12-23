@@ -36,6 +36,8 @@ public class DisplayClimatologicalProbeActivity extends AppCompatActivity {
         }
 
         //Instanciamos los elementos
+
+
         soilLowerLimit = (TextView) findViewById(R.id.textViewSoilLowerLimitTv);
         soilUpperLimit = (TextView) findViewById(R.id.textViewSoilUpperLimitTv);
         humidityLowerLimit = (TextView) findViewById(R.id.textViewHumidityLowerLimitTv);
@@ -79,10 +81,10 @@ public class DisplayClimatologicalProbeActivity extends AppCompatActivity {
 
                 id= rs.getInt(1);
                 soilLowerLimitDouble = rs.getDouble(3);
-                soilUpperLimitDouble = rs.getDouble(4);
-                humidityLowerLimitDouble = rs.getDouble(5);
-                humidityUpperLimitDouble = rs.getDouble(6);
-                temperatureLowerLimitDouble = rs.getDouble(7);
+                soilUpperLimitDouble = rs.getDouble(6);
+                humidityLowerLimitDouble = rs.getDouble(4);
+                humidityUpperLimitDouble = rs.getDouble(7);
+                temperatureLowerLimitDouble = rs.getDouble(5);
                 temperatureUpperLimitDouble = rs.getDouble(8);
                 active=rs.getBoolean(9);
                 plotId= rs.getInt(10);

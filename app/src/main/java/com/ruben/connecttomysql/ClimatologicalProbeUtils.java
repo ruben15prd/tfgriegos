@@ -38,15 +38,43 @@ public class ClimatologicalProbeUtils {
         editTextTemperatureLower = (EditText) activity.findViewById(R.id.editTextTemperatureLower);
         editTextTemperatureUpper = (EditText) activity.findViewById(R.id.editTextTemperatureUpper);
 
+        if(!editTextSoilLower.getText().toString().isEmpty()){
+            soilLower = Double.parseDouble(editTextSoilLower.getText().toString());
+        }else{
+            soilLower=0.0;
+        }
 
-        soilLower = Double.parseDouble(editTextSoilLower.getText().toString());
+        if(!editTextSoilUpper.getText().toString().isEmpty()){
         soilUpper = Double.parseDouble(editTextSoilUpper.getText().toString());
+        }else{
+            soilUpper=0.0;
+        }
+        if(!editTextHumidityLower.getText().toString().isEmpty()){
         humidityLower = Double.parseDouble(editTextHumidityLower.getText().toString());
+        }else{
+            humidityLower=0.0;
+        }
+
+        if(!editTextHumidityUpper.getText().toString().isEmpty()){
         humidityUpper = Double.parseDouble(editTextHumidityUpper.getText().toString());
+        }else{
+            humidityUpper=0.0;
+        }
+
+        if(!editTextTemperatureLower.getText().toString().isEmpty()){
         temperatureLower = Double.parseDouble(editTextTemperatureLower.getText().toString());
+        }else{
+            temperatureLower=0.0;
+        }
+
+        if(!editTextTemperatureUpper.getText().toString().isEmpty()){
         temperatureUpper = Double.parseDouble(editTextTemperatureUpper.getText().toString());
+        }else{
+            temperatureUpper=0.0;
+        }
 
         //Comprobamos las restricciones del dominio
+
 
 
         if(soilLower >= soilUpper){

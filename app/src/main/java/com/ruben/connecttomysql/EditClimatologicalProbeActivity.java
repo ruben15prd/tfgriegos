@@ -117,12 +117,37 @@ public class EditClimatologicalProbeActivity extends AppCompatActivity {
                         // some code #3 (Write your code here to run in UI thread)
 
                         //Obtenemos el texto de los campos que ha introducido el usuario
-                        soilMoistureLower = Double.parseDouble(editTextSoilLower.getText().toString());
-                        soilMoistureUpper = Double.parseDouble(editTextSoilUpper.getText().toString());
-                        humidityLower = Double.parseDouble(editTextHumidityLower.getText().toString());
-                        humidityUpper = Double.parseDouble(editTextHumidityUpper.getText().toString());
-                        temperatureLower = Double.parseDouble(editTextTemperatureLower.getText().toString());
-                        temperatureUpper = Double.parseDouble(editTextTemperatureUpper.getText().toString());
+
+                        if(!editTextSoilLower.getText().toString().isEmpty()) {
+                            soilMoistureLower = Double.parseDouble(editTextSoilLower.getText().toString());
+                        }else{
+                            soilMoistureLower=0.0;
+                        }
+                        if(!editTextSoilUpper.getText().toString().isEmpty()) {
+                            soilMoistureUpper = Double.parseDouble(editTextSoilUpper.getText().toString());
+                        }else{
+                            soilMoistureUpper=0.0;
+                        }
+                        if(!editTextHumidityLower.getText().toString().isEmpty()) {
+                            humidityLower = Double.parseDouble(editTextHumidityLower.getText().toString());
+                        }else{
+                            humidityLower=0.0;
+                        }
+                        if(!editTextHumidityUpper.getText().toString().isEmpty()) {
+                            humidityUpper = Double.parseDouble(editTextHumidityUpper.getText().toString());
+                        }else{
+                            humidityUpper=0.0;
+                        }
+                        if(!editTextTemperatureLower.getText().toString().isEmpty()) {
+                            temperatureLower = Double.parseDouble(editTextTemperatureLower.getText().toString());
+                        }else{
+                            temperatureLower=0.0;
+                        }
+                        if(!editTextTemperatureUpper.getText().toString().isEmpty()) {
+                            temperatureUpper = Double.parseDouble(editTextTemperatureUpper.getText().toString());
+                        }else{
+                            temperatureUpper=0.0;
+                        }
 
 
                         if(switchActiveClimatologicalProbeSw.isChecked()==true){
