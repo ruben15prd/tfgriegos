@@ -58,4 +58,15 @@
         android:layout_toRightOf="@+id/textView15"
         android:layout_toEndOf="@+id/textView15"
         android:id="@+id/textViewNombrePlot" />
+
+    <Button
+        android:text="@string/display_climalogical_probe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonEditPlot"
+        android:layout_toRightOf="@+id/buttonEditPlot"
+        android:layout_toEndOf="@+id/buttonEditPlot"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
+        android:id="@+id/buttonAutoRiego" />
 </RelativeLayout>

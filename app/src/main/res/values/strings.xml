@@ -17,4 +17,12 @@
     <string name="nombre_plot">Nombre: </string>
     <string name="bomba_activada">Bomba de agua: </string>
     <string name="display_plot">Ver plot</string>
+    <string name="display_climalogical_probe">Ver autoriego</string>
+    <string name="moisture_lower_limit">Límite inferior humedad suelo: </string>
+    <string name="moisture_upper_limit">Límite superior humedad suelo: </string>
+    <string name="humidity_lower_limit">Límite inferior humedad ambiente: </string>
+    <string name="humidity_upper_limit">Límite superior humedad ambiente: </string>
+    <string name="temperature_lower_limit">Límite inferior temperatura ambiente: </string>
+    <string name="temperature_upper_limit">Límite superior temperatura ambiente: </string>
+    <string name="active_climatological_probe">Activar auto riego: </string>
 </resources>

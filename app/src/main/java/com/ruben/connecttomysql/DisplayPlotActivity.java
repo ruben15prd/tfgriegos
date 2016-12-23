@@ -55,6 +55,18 @@ public class DisplayPlotActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonAutoRiegoPlot = (Button) findViewById(R.id.buttonAutoRiego);
+
+
+        buttonAutoRiegoPlot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayPlotActivity.this, DisplayClimatologicalProbeActivity.class);
+                intent.putExtra("plot", plot);
+                startActivity(intent);
+            }
+        });
+
 
 
     }

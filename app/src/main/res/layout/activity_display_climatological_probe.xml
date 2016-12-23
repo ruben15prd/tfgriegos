@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_display_climatological_probe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ruben.connecttomysql.DisplayClimatologicalProbeActivity">
+
+    <TextView
+        android:text="@string/moisture_lower_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/textViewSoilLowerLimit" />
+
+    <TextView
+        android:text="@string/moisture_upper_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewSoilLowerLimit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="38dp"
+        android:id="@+id/textViewSoilUpperLimit" />
+
+    <TextView
+        android:text="@string/humidity_lower_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewSoilUpperLimit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp"
+        android:id="@+id/textViewHumidityLowerLimit" />
+
+    <TextView
+        android:text="@string/humidity_upper_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewHumidityLowerLimit"
+        android:layout_marginTop="44dp"
+        android:id="@+id/textViewHumidityUpperLimit" />
+
+    <TextView
+        android:text="@string/temperature_lower_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewHumidityUpperLimit"
+        android:layout_marginTop="48dp"
+        android:id="@+id/textViewTemperatureLowerLimit" />
+
+    <Switch
+        android:text="@string/active_climatological_probe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewTemperatureUpperLimit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp"
+        android:id="@+id/switchActiveClimatologicalProbe" />
+
+    <Button
+        android:text="@string/editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/buttonEditarClimatologicalProbe" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textViewSoilLowerLimit"
+        android:layout_toRightOf="@+id/textViewSoilUpperLimit"
+        android:layout_toEndOf="@+id/textViewSoilUpperLimit"
+        android:id="@+id/textViewSoilLowerLimitTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewHumidityLowerLimit"
+        android:layout_toRightOf="@+id/textViewHumidityLowerLimit"
+        android:layout_toEndOf="@+id/textViewHumidityLowerLimit"
+        android:id="@+id/textViewSoilUpperLimitTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewHumidityUpperLimit"
+        android:layout_toRightOf="@+id/textViewHumidityUpperLimit"
+        android:layout_toEndOf="@+id/textViewHumidityUpperLimit"
+        android:id="@+id/textViewHumidityLowerLimitTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textViewHumidityUpperLimit"
+        android:layout_toRightOf="@+id/textViewTemperatureLowerLimit"
+        android:layout_toEndOf="@+id/textViewTemperatureLowerLimit"
+        android:id="@+id/textViewHumidityUpperLimitTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textViewTemperatureLowerLimit"
+        android:layout_toRightOf="@+id/textViewTemperatureUpperLimit"
+        android:layout_toEndOf="@+id/textViewTemperatureUpperLimit"
+        android:id="@+id/textViewTemperatureLowerLimitTv" />
+
+    <TextView
+        android:text="@string/temperature_upper_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:id="@+id/textViewTemperatureUpperLimit"
+        android:layout_below="@+id/textViewTemperatureLowerLimit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewTemperatureUpperLimitTv"
+        android:layout_alignBaseline="@+id/textViewTemperatureUpperLimit"
+        android:layout_alignBottom="@+id/textViewTemperatureUpperLimit"
+        android:layout_toRightOf="@+id/textViewTemperatureLowerLimitTv"
+        android:layout_toEndOf="@+id/textViewTemperatureLowerLimitTv"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
+</RelativeLayout>
