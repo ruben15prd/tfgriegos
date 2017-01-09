@@ -1,5 +1,7 @@
 package com.ruben.connecttomysql;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -111,6 +115,68 @@ public class ListPlotsActivity extends AppCompatActivity {
             }
         });
 
+// Realizamos el evento para borrar un elemento al realizar una pulsacion larga
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
+        {
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,int arg2, long arg3)
+            {
+                ListView list1 = listView;
+                final String selectedValue = list1.getItemAtPosition(arg2).toString();
+                Plot plot =(Plot) list1.getItemAtPosition(arg2);
+                Integer plotId= plot.getId();
+                AlertDialog.Builder alertDialog = new  AlertDialog.Builder(ListPlotsActivity.this);
+                alertDialog.setTitle("Borrar");
+                alertDialog.setMessage(selectedValue);
+                alertDialog.setNegativeButton("Borrar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        try{
+                            Class.forName("com.mysql.jdbc.Driver");
+                            Connection con = DriverManager.getConnection(ConnectionUtils.getUrl(),ConnectionUtils.getUser(),ConnectionUtils.getPass());
+
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    // some code #3 (Write your code here to run in UI thread)
+
+                                    //Obtenemos el texto de los campos que ha introducido el usuario
+
+                                    //Log.d("Debug", "El valor del usuario es: " + nomEditText);
+                                    //Log.d("Debug", "El valor de la contraseña es: " + contraEditText);
+                                }
+                            });
+
+                            Statement st = con.createStatement();
+
+                            //Guardamos la conexion que usaremos en la aplicacion
+                            ConnectionUtils.setStatement(st);
+
+                            String sql = "DELETE FROM PLOT WHERE id="+plotId;
+
+                            //Realizamos la consulta contra la base de datos
+                            //Borramos
+                            st.executeUpdate(sql);
+
+
+                            Intent intent = new Intent (ListPlotsActivity.this, ListFarmsActivity.class);
+                            startActivity(intent);
+
+
+
+
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+
+
+                    } });
+                alertDialog.setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // alertDialog.dismiss();
+                    } });
+
+                alertDialog.show();
+                return true;
+            }
+        });
 
 
 
