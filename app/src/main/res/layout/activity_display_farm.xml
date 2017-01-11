@@ -27,24 +27,6 @@
         android:layout_marginTop="39dp"
         android:layout_alignParentLeft="true" />
 
-    <Button
-        android:text="@string/editar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/button" />
-
-    <Button
-        android:text="@string/lista_plots"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/button5" />
-
     <TextView
         android:text="@string/location_farm"
         android:layout_width="wrap_content"
@@ -72,4 +54,30 @@
         android:layout_alignBottom="@+id/textView5"
         android:layout_toRightOf="@+id/button"
         android:layout_toEndOf="@+id/button" />
+
+    <Button
+        android:text="@string/ver_clima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/verClimaBt"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button" />
+
+    <Button
+        android:text="@string/lista_plots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button5"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/verClimaBt" />
+
+    <Button
+        android:text="@string/editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
 </RelativeLayout>

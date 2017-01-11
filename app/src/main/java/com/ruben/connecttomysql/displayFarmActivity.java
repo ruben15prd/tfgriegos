@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ public class DisplayFarmActivity extends AppCompatActivity {
     // Declaramos los elementos
     private TextView nombreTv;
     private TextView localizacionTv;
+
 
 
 
@@ -57,6 +59,16 @@ public class DisplayFarmActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonVerClima= (Button) findViewById(R.id.verClimaBt);
+        buttonVerClima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(DisplayFarmActivity.this, WebViewClimaActivity.class);
+                intent.putExtra("busqueda", farm.getLocation());
+                startActivity(intent);
+            }
+        });
 
 
     }

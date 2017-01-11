@@ -26,4 +26,5 @@
     <string name="temperature_lower_limit">Límite inferior temperatura ambiente: </string>
     <string name="temperature_upper_limit">Límite superior temperatura ambiente: </string>
     <string name="active_climatological_probe">Activar auto riego: </string>
+    <string name="ver_clima">Ver climatología</string>
 </resources>
