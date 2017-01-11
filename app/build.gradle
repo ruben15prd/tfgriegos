@@ -29,13 +29,13 @@ android {
         sourceCompatibility = org.gradle.api.JavaVersion.VERSION_1_8
         targetCompatibility = org.gradle.api.JavaVersion.VERSION_1_8
     }
-    repositories {
-        maven { url "https://jitpack.io" }
-    }
 
-    dependencies {
-        compile 'com.github.PhilJay:MPAndroidChart:v2.0.9'
-    }
+
+
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -45,6 +45,7 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.4'
 }
 
 

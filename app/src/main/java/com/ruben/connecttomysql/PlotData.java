@@ -1,7 +1,7 @@
 package com.ruben.connecttomysql;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by ruben on 11/01/2017.
@@ -9,14 +9,14 @@ import java.util.Date;
 
 public class PlotData implements Serializable {
     private Integer id;
-    private Date measuringMoment;
+    private Timestamp measuringMoment;
     private Double soilMoisture;
     private Double humidity;
     private Double temperature;
     private Integer plotId;
 
 
-    public PlotData(Integer id,Date measuringMoment,Double soilMoisture,Double humidity,Double temperature,Integer plotId){
+    public PlotData(Integer id,Timestamp measuringMoment,Double soilMoisture,Double humidity,Double temperature,Integer plotId){
         this.id = id;
         this.measuringMoment = measuringMoment;
         this.soilMoisture = soilMoisture;
@@ -43,11 +43,11 @@ public class PlotData implements Serializable {
         this.soilMoisture = soilMoisture;
     }
 
-    public Date getMeasuringMoment() {
+    public Timestamp getMeasuringMoment() {
         return measuringMoment;
     }
 
-    public void setMeasuringMoment(Date measuringMoment) {
+    public void setMeasuringMoment(Timestamp measuringMoment) {
         this.measuringMoment = measuringMoment;
     }
 
