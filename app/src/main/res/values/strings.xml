@@ -10,6 +10,7 @@
     <string name="nombre_farm">Nombre: </string>
     <string name="latitude_farm">Latitud: </string>
     <string name="longitude_farm">Longitud: </string>
+    <string name="location_farm">Localización: </string>
     <string name="editar">Editar</string>
     <string name="aceptar">Aceptar</string>
     <string name="crear">Crear</string>

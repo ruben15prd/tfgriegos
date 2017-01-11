@@ -11,8 +11,7 @@ import android.widget.TextView;
 public class DisplayFarmActivity extends AppCompatActivity {
     // Declaramos los elementos
     private TextView nombreTv;
-    private TextView latitudTv;
-    private TextView longitudTv;
+    private TextView localizacionTv;
 
 
 
@@ -22,8 +21,7 @@ public class DisplayFarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_farm);
         //Instanciamos los elementos
         nombreTv = (TextView) findViewById(R.id.textView8);
-        latitudTv = (TextView) findViewById(R.id.textView9);
-        longitudTv = (TextView) findViewById(R.id.textView10);
+        localizacionTv = (TextView) findViewById(R.id.textView9);
 
         //Obtenemos la farm pasada por parametro
         Farm farm =(Farm) getIntent().getSerializableExtra("farm");
@@ -31,8 +29,7 @@ public class DisplayFarmActivity extends AppCompatActivity {
         //Cargamos los valores a mostrar
 
         nombreTv.setText(farm.getName());
-        latitudTv.setText(farm.getLatitude().toString());
-        longitudTv.setText(farm.getLongitude().toString());
+        localizacionTv.setText(farm.getLocation().toString());
 
         Button buttonEditarFarm = (Button) findViewById(R.id.button);
 

@@ -18,8 +18,7 @@ import java.util.List;
 public class CreateFarmActivity extends AppCompatActivity {
     // Declaramos los elementos
     private EditText nombreEt;
-    private EditText latitudEt;
-    private EditText longitudEt;
+    private EditText localizacionEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +28,7 @@ public class CreateFarmActivity extends AppCompatActivity {
 
         //Instanciamos los elementos
         nombreEt = (EditText) findViewById(R.id.editText3);
-        latitudEt = (EditText) findViewById(R.id.editText6);
-        longitudEt = (EditText) findViewById(R.id.editText4);
+        localizacionEt = (EditText) findViewById(R.id.editText4);
 
         Button buttonAceptar = (Button) findViewById(R.id.button3);
         //Definimos el comportamiento del boton aceptar
@@ -47,8 +45,7 @@ public class CreateFarmActivity extends AppCompatActivity {
     // Ejecutamos de forma asincrona, las acciones del boton aceptar
     private class CreateFarm extends AsyncTask<Void,Void,Void> {
         private String nombre="";
-        private Double latitud=null;
-        private Double longitud=null;
+        private String localizacion="";
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -66,13 +63,7 @@ public class CreateFarmActivity extends AppCompatActivity {
 
                         //Obtenemos el texto de los campos que ha introducido el usuario
                         nombre = nombreEt.getText().toString();
-                        if(!latitudEt.getText().toString().isEmpty()){
-                            latitud= Double.parseDouble(latitudEt.getText().toString());
-                        }
-
-                        if(!longitudEt.getText().toString().isEmpty()) {
-                            longitud = Double.parseDouble(longitudEt.getText().toString());
-                        }
+                        localizacion = localizacionEt.getText().toString();
 
 
 
@@ -92,7 +83,7 @@ public class CreateFarmActivity extends AppCompatActivity {
 
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
                     //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud);
-                    String sql = "insert into FARM (name,latitude,longitude,id_propietary) VALUES ('"+nombre+"',"+latitud+","+longitud+","+ConnectionUtils.getUserId()+ ")";
+                    String sql = "insert into FARM (name,location,id_propietary) VALUES ('"+nombre+"','"+localizacion+"',"+ConnectionUtils.getUserId()+ ")";
                     //Realizamos la consulta contra la base de datos
                     st.executeUpdate(sql);
 

@@ -15,35 +15,24 @@ public class FarmUtils {
 
     public static List<String> compruebaErrores(Activity activity) {
         List<String> errores;
-        EditText nombre,latitud,longitud;
-        String nombreStr;
-        Double latitudD,longitudD;
+        EditText nombre,localizacion;
+        String nombreStr,localizacionStr;
 
         errores = new ArrayList<String>();
         nombre = (EditText) activity.findViewById(R.id.editText3);
-        latitud = (EditText) activity.findViewById(R.id.editText6);
-        longitud = (EditText) activity.findViewById(R.id.editText4);
+        localizacion = (EditText) activity.findViewById(R.id.editText4);
 
         nombreStr = nombre.getText().toString();
+        localizacionStr = localizacion.getText().toString();
 
         //Comprobamos las restricciones del dominio
         if (nombreStr.matches("")) {
             errores.add("Debes introducir un nombre");
         }
-        if(!latitud.getText().toString().isEmpty()){
-            latitudD = Double.parseDouble(latitud.getText().toString());
-            if(latitudD <-90.0 || latitudD >90.0 ){
-                errores.add("La latitud debe estar entre -90.0 y 90.0");
-            }
-
+        if (localizacionStr.matches("")) {
+            errores.add("Debes introducir una localización");
         }
-        if(!longitud.getText().toString().isEmpty()){
-           longitudD = Double.parseDouble(longitud.getText().toString());
-            if(longitudD <-180.0 || longitudD >180.0 ){
-                errores.add("La latitud debe estar entre -180.0 y 180.0");
-            }
 
-        }
 
         return errores;
     }

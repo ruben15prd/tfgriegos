@@ -25,8 +25,7 @@ public class ListFarmsActivity extends AppCompatActivity {
     private ListView listView;
     private Integer id;
     private String name;
-    private Double longitude;
-    private Double latitude;
+    private String localizacion;
 
 
     @Override
@@ -63,10 +62,9 @@ public class ListFarmsActivity extends AppCompatActivity {
                     Farm farm;
                     id = rs.getInt(1);
                     name = rs.getString(3);
-                    longitude = rs.getDouble(4);
-                    latitude = rs.getDouble(5);
+                    localizacion = rs.getString(4);
 
-                    farm = new Farm(id,name,longitude,latitude);
+                    farm = new Farm(id,name,localizacion);
                     //Log.d("Debug", "Nombre: " + name +" longitud: "+longitude.toString()+" latitude: "+latitude.toString());
 
 

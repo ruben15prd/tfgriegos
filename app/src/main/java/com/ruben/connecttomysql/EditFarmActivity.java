@@ -20,8 +20,7 @@ import java.util.List;
 public class EditFarmActivity extends AppCompatActivity {
     // Declaramos los elementos
     private EditText nombreEt;
-    private EditText latitudEt;
-    private EditText longitudEt;
+    private EditText localizacionEt;
     private Integer farmId;
     private Farm farm;
 
@@ -33,8 +32,7 @@ public class EditFarmActivity extends AppCompatActivity {
 
         //Instanciamos los elementos
         nombreEt = (EditText) findViewById(R.id.editText3);
-        latitudEt = (EditText) findViewById(R.id.editText6);
-        longitudEt = (EditText) findViewById(R.id.editText4);
+        localizacionEt = (EditText) findViewById(R.id.editText4);
 
         //Obtenemos la farm pasada por parametro
         farm =(Farm) getIntent().getSerializableExtra("farm");
@@ -42,8 +40,7 @@ public class EditFarmActivity extends AppCompatActivity {
         //Cargamos los valores a mostrar
 
         nombreEt.setText(farm.getName());
-        latitudEt.setText(farm.getLatitude().toString());
-        longitudEt.setText(farm.getLongitude().toString());
+        localizacionEt.setText(farm.getLocation().toString());
 
         farmId= farm.getId();
         Log.d("Debug", "Farm id: " + farmId);
@@ -64,8 +61,7 @@ public class EditFarmActivity extends AppCompatActivity {
     // Ejecutamos de forma asincrona, las acciones del boton aceptar
     private class EditarFarm extends AsyncTask<Void,Void,Void> {
         private String nombre="";
-        private Double latitud=null;
-        private Double longitud=null;
+        private String location="";
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -83,13 +79,9 @@ public class EditFarmActivity extends AppCompatActivity {
 
                         //Obtenemos el texto de los campos que ha introducido el usuario
                         nombre = nombreEt.getText().toString();
+                        location = localizacionEt.getText().toString();
 
-                        if(!latitudEt.getText().toString().isEmpty()) {
-                            latitud = Double.parseDouble(latitudEt.getText().toString());
-                        }
-                        if(!longitudEt.getText().toString().isEmpty()) {
-                            longitud = Double.parseDouble(longitudEt.getText().toString());
-                        }
+
 
 
 
@@ -108,7 +100,7 @@ public class EditFarmActivity extends AppCompatActivity {
 
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
                     //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud+",farmId:"+farmId);
-                    String sql = "update FARM set name='"+nombre + "',latitude="+latitud+",longitude="+longitud+" where id="+farmId;
+                    String sql = "update FARM set name='"+nombre + "',location='"+location+"' where id="+farmId;
                     //Realizamos la consulta contra la base de datos
                     st.executeUpdate(sql);
 

@@ -13,15 +13,13 @@ import java.io.Serializable;
 public class Farm implements Serializable{
     private Integer id;
     private String name;
-    private Double longitude;
-    private Double latitude;
+    private String location;
 
 
-    public Farm(Integer id,String name, Double longitude,Double latitude){
+    public Farm(Integer id,String name, String location){
         this.id = id;
         this.name = name;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.location = location;
 
     }
 
@@ -43,22 +41,13 @@ public class Farm implements Serializable{
         this.name = name;
     }
 
-    public Double getLongitude() {
-        return longitude;
+
+    public String getLocation() {
+        return location;
     }
 
-    public void setLongitude(Double longitude) {
-
-        this.longitude = longitude;
-    }
-
-    public Double getLatitude() {
-
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String toString(){
