@@ -60,13 +60,20 @@
         android:id="@+id/textViewNombrePlot" />
 
     <Button
+        android:text="@string/ver_historico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/verHistoricoBt" />
+
+    <Button
         android:text="@string/display_climalogical_probe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonEditPlot"
-        android:layout_toRightOf="@+id/buttonEditPlot"
-        android:layout_toEndOf="@+id/buttonEditPlot"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"
-        android:id="@+id/buttonAutoRiego" />
+        android:id="@+id/buttonAutoRiego"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/verHistoricoBt"
+        android:layout_toStartOf="@+id/verHistoricoBt" />
 </RelativeLayout>

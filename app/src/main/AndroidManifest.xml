@@ -27,7 +27,8 @@
         <activity android:name=".CreatePlotActivity" />
         <activity android:name=".DisplayClimatologicalProbeActivity" />
         <activity android:name=".EditClimatologicalProbeActivity" />
-        <activity android:name=".WebViewClimaActivity"></activity>
+        <activity android:name=".WebViewClimaActivity" />
+        <activity android:name=".HistoricoActivity"></activity>
     </application>
 
 </manifest>

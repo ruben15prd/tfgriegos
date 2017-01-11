@@ -67,6 +67,16 @@ public class DisplayPlotActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonVerHistorico = (Button) findViewById(R.id.verHistoricoBt);
+        buttonVerHistorico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(DisplayPlotActivity.this, HistoricoActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
