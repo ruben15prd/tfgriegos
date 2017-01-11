@@ -2,6 +2,7 @@ package com.ruben.connecttomysql;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -10,7 +11,11 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class HistoricoActivity extends AppCompatActivity {
 
@@ -18,6 +23,59 @@ public class HistoricoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico);
+
+
+        // Permitimos que se puedan realizar peticiones en la ui de la activity
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+        List<PlotData> plotDatas;
+        Statement st;
+
+
+        plotDatas = new ArrayList<PlotData>();
+
+        //Obtenemos el plot pasado por parametro
+        Plot plot =(Plot) getIntent().getSerializableExtra("plot");
+        Integer plotId= plot.getId();
+
+        st = ConnectionUtils.getStatement();
+
+        try{
+            int userId = ConnectionUtils.getUserId();
+            String sql = "select * from PLOTDATA where id="+plotId;
+            //Realizamos la consulta contra la base de datos
+            final ResultSet rs = st.executeQuery(sql);
+
+            //rs.next();
+
+            while(rs.next()) {
+                Integer id = rs.getInt(1);
+                Date measuringMoment = rs.getDate(3);
+                Double soilMoisture = rs.getDouble(4);
+                Double humidity = rs.getDouble(5);
+                Double temperature = rs.getDouble(6);
+                plotId = rs.getInt(7);
+
+                PlotData plotData = new PlotData(id,measuringMoment,soilMoisture,humidity,temperature,plotId);
+                //Log.d("Debug", "Nombre: " + name +" longitud: "+longitude.toString()+" latitude: "+latitude.toString());
+
+
+                plotDatas.add(plotData);
+
+            }
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
         BarChart chart = (BarChart) findViewById(R.id.chart);
 
         BarData data = new BarData(getXAxisValues(), getDataSet());
