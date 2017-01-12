@@ -1,14 +1,19 @@
 package com.ruben.connecttomysql;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -18,6 +23,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class HistoricoActivity extends AppCompatActivity {
+    Integer plotId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,7 @@ public class HistoricoActivity extends AppCompatActivity {
 
         //Obtenemos el plot pasado por parametro
         Plot plot =(Plot) getIntent().getSerializableExtra("plot");
-        Integer plotId= plot.getId();
+        plotId= plot.getId();
 
         st = ConnectionUtils.getStatement();
 
@@ -76,8 +82,6 @@ public class HistoricoActivity extends AppCompatActivity {
 
 
 
-
-
         LineChart chart = (LineChart) findViewById(R.id.chart);
 
 
@@ -101,7 +105,7 @@ public class HistoricoActivity extends AppCompatActivity {
             contador=contador+1;
         }
 
-
+        if(labels1.size()!=0 && entries1.size()!=0){
         LineDataSet dataset = new LineDataSet(entries1,"Temperatura");
         LineData data = new LineData(labels1, dataset);
         chart.setData(data);
@@ -109,7 +113,53 @@ public class HistoricoActivity extends AppCompatActivity {
         dataset.setDrawCubic(true);
         dataset.setDrawFilled(true);
         chart.animateY(2000);
+        }
+        Button buttonBorrarHistorico= (Button) findViewById(R.id.borrarHistoricoBt);
+        buttonBorrarHistorico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection(ConnectionUtils.getUrl(),ConnectionUtils.getUser(),ConnectionUtils.getPass());
+
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            // some code #3 (Write your code here to run in UI thread)
+
+                            //Obtenemos el texto de los campos que ha introducido el usuario
+
+                        }
+                    });
+
+                    Statement st = con.createStatement();
+
+                    //Guardamos la conexion que usaremos en la aplicacion
+                    ConnectionUtils.setStatement(st);
+
+                    String sql = "DELETE FROM PLOTDATA WHERE id_plot="+plotId;
+
+                    //Realizamos la consulta contra la base de datos
+                    //Borramos
+                    st.executeUpdate(sql);
+
+
+                    Intent intent = new Intent (HistoricoActivity.this, DisplayPlotActivity.class);
+                    intent.putExtra("plot", plot);
+                    startActivity(intent);
+
+
+
+
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
     }
+
 
 
 

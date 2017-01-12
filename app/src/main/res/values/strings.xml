@@ -28,4 +28,5 @@
     <string name="active_climatological_probe">Activar auto riego: </string>
     <string name="ver_clima">Ver climatología</string>
     <string name="ver_historico">Ver histórico</string>
+    <string name="borrar_historico">Borrar histórico</string>
 </resources>
