@@ -1,0 +1,62 @@
+package com.ruben.connecttomysql.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * Created by ruben on 19/12/2016.
+ */
+@SuppressWarnings("serial")
+public class IrrigationMomentDay implements Serializable{
+
+    private Integer id;
+    private Date irrigationMoment;
+    private Integer duration;
+    private Integer idIrrigation;
+
+    public IrrigationMomentDay(Integer id, Date irrigationMoment, Integer duration, Integer idIrrigation){
+        super();
+        this.id = id;
+        this.irrigationMoment = irrigationMoment;
+
+        this.duration = duration;
+        this.idIrrigation = idIrrigation;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getIrrigationMoment() {
+        return irrigationMoment;
+    }
+
+    public void setIrrigationMoment(Date irrigationMoment) {
+        this.irrigationMoment = irrigationMoment;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Integer getIdIrrigation() {
+        return idIrrigation;
+    }
+
+    public void setIdIrrigation(Integer idIrrigation) {
+        this.idIrrigation = idIrrigation;
+    }
+
+    public String toString(){
+        String s= getIrrigationMoment().toString();
+        return s;
+    }
+}

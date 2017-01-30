@@ -11,6 +11,9 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.ruben.connecttomysql.plot.DisplayPlotActivity;
+import com.ruben.connecttomysql.model.Plot;
+import com.ruben.connecttomysql.plot.PlotData;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

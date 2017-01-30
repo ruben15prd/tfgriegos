@@ -17,16 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListFarmsActivity" />
-        <activity android:name=".DisplayFarmActivity" />
-        <activity android:name=".EditFarmActivity" />
-        <activity android:name=".CreateFarmActivity" />
-        <activity android:name=".ListPlotsActivity" />
-        <activity android:name=".DisplayPlotActivity" />
-        <activity android:name=".EditPlotActivity" />
-        <activity android:name=".CreatePlotActivity" />
-        <activity android:name=".DisplayClimatologicalProbeActivity" />
-        <activity android:name=".EditClimatologicalProbeActivity" />
+        <activity android:name=".farm.ListFarmsActivity" />
+        <activity android:name=".farm.DisplayFarmActivity" />
+        <activity android:name=".farm.EditFarmActivity" />
+        <activity android:name=".farm.CreateFarmActivity" />
+        <activity android:name=".plot.ListPlotsActivity" />
+        <activity android:name=".plot.DisplayPlotActivity" />
+        <activity android:name=".plot.EditPlotActivity" />
+        <activity android:name=".plot.CreatePlotActivity" />
+        <activity android:name=".climatologicalProbe.DisplayClimatologicalProbeActivity" />
+        <activity android:name=".climatologicalProbe.EditClimatologicalProbeActivity" />
         <activity android:name=".WebViewClimaActivity" />
         <activity android:name=".HistoricoActivity"></activity>
     </application>

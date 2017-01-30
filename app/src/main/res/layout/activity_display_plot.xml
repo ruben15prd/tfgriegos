@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ruben.connecttomysql.DisplayPlotActivity">
+    tools:context="com.ruben.connecttomysql.plot.DisplayPlotActivity">
 
     <TextView
         android:text="@string/display_plot"
@@ -76,4 +76,14 @@
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/verHistoricoBt"
         android:layout_toStartOf="@+id/verHistoricoBt" />
+
+    <Button
+        android:text="@string/riegos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonEditPlot"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp"
+        android:id="@+id/button7" />
 </RelativeLayout>
