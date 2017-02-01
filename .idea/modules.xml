@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ConnectToMySQL.iml" filepath="$PROJECT_DIR$/ConnectToMySQL.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tfgriegos.iml" filepath="$PROJECT_DIR$/tfgriegos.iml" />
     </modules>
   </component>
 </project>
