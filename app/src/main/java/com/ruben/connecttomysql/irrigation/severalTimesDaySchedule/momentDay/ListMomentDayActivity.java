@@ -11,21 +11,22 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.ruben.connecttomysql.ConnectionUtils;
-import com.ruben.connecttomysql.model.IrrigationMomentDay;
 import com.ruben.connecttomysql.R;
+import com.ruben.connecttomysql.model.IrrigationMomentDay;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ListMomentDayActivity extends AppCompatActivity {
     private ListView listView;
     private Integer id;
-    private Date irrigationMoment;
+    private Timestamp irrigationMoment;
     private Integer duration;
     private Integer idIrrigation;
+    private Integer idSeveralTimesDaysSchedule;
 
 
     @Override
@@ -54,7 +55,10 @@ public class ListMomentDayActivity extends AppCompatActivity {
 
         try{
             int userId = ConnectionUtils.getUserId();
-            String sql = "select * from IRRIGATIONMOMENTDAY where id_severalTimesDaySchedule="+idIrrigation;
+
+            //String sql = "select * from IRRIGATIONMOMENTDAY where id_severalTimesDaySchedule ="+idIrrigation;
+
+            String sql = "select * from IRRIGATIONMOMENTDAY where id_severalTimesDaySchedule =  (select id from SEVERALTIMESDAYSCHEDULE where id_irrigation ="+idIrrigation+ ")";
             //Realizamos la consulta contra la base de datos
             final ResultSet rs = st.executeQuery(sql);
 
@@ -63,10 +67,10 @@ public class ListMomentDayActivity extends AppCompatActivity {
             while(rs.next()) {
                 IrrigationMomentDay riego;
                 id = rs.getInt(1);
-                irrigationMoment = rs.getDate(3);
+                irrigationMoment = rs.getTimestamp(3);
                 duration = rs.getInt(4);
-
-                riego = new IrrigationMomentDay(id, irrigationMoment, duration, idIrrigation);
+                idSeveralTimesDaysSchedule = rs.getInt(5);
+                riego = new IrrigationMomentDay(id, irrigationMoment, duration, idSeveralTimesDaysSchedule, idIrrigation);
                 //Log.d("Debug", "Nombre: " + name +" longitud: "+longitude.toString()+" latitude: "+latitude.toString());
 
                 riegos.add(riego);
@@ -107,6 +111,7 @@ public class ListMomentDayActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent (ListMomentDayActivity.this, CreateMomentDayActivity.class);
+                intent.putExtra("idSeveralTimesDaysSchedule", idSeveralTimesDaysSchedule);
                 intent.putExtra("idIrrigation", idIrrigation);
                 startActivity(intent);
 

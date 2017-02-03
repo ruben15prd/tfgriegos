@@ -11,22 +11,24 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.ruben.connecttomysql.ConnectionUtils;
+import com.ruben.connecttomysql.R;
 import com.ruben.connecttomysql.model.Manual;
 import com.ruben.connecttomysql.model.Plot;
-import com.ruben.connecttomysql.R;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ListManualActivity extends AppCompatActivity {
     private ListView listView;
     private Integer id;
     private String name;
-    private Date cancelMoment;
-    private Date startDate;
+    private Timestamp cancelMoment;
+    private Timestamp startDate;
     private Integer duration;
 
 
@@ -42,7 +44,7 @@ public class ListManualActivity extends AppCompatActivity {
         }
 
         List<Manual> manuals;
-        Statement st;
+        Statement st,st2;
 
 
         manuals = new ArrayList<Manual>();
@@ -54,33 +56,40 @@ public class ListManualActivity extends AppCompatActivity {
 
         st = ConnectionUtils.getStatement();
 
+
         try{
-                int userId = ConnectionUtils.getUserId();
-                String sql = "select * from IRRIGATION where id_plot="+plot.getId();
-                //Realizamos la consulta contra la base de datos
-                final ResultSet rs = st.executeQuery(sql);
+            int userId = ConnectionUtils.getUserId();
+            final String url= "jdbc:mysql://138.68.102.13:3306/TFGRIEGOS";
+            final String user = "prueba";
+            final String pass = "irrigadino";
+            Connection con = DriverManager.getConnection(url,user,pass);
+            st2 = con.createStatement();
+            String sql = "select * from IRRIGATION where id_plot="+plot.getId();
+            //Realizamos la consulta contra la base de datos
+            final ResultSet rs = st.executeQuery(sql);
 
-                //rs.next();
+            //rs.next();
 
-                while(rs.next()) {
-                    Manual manual;
-                    id = rs.getInt(1);
-                    name = rs.getString(4);
-                    cancelMoment = rs.getDate(3);
+            while(rs.next()) {
+                Manual manual;
+                id = rs.getInt(1);
+                name = rs.getString(5);
+                cancelMoment = rs.getTimestamp(3);
 
-                    String sql2 = "select * from MANUAL where id_irrigation="+id;
-                    final ResultSet rs2 = st.executeQuery(sql);
+                String sql2 = "select * from MANUAL where id_irrigation="+id;
 
-                    startDate = rs2.getDate(3);
+                final ResultSet rs2 = st2.executeQuery(sql2);
+                while(rs2.next()) {
+                    startDate = rs2.getTimestamp(3);
                     duration = rs2.getInt(4);
 
                     manual = new Manual(id, name, cancelMoment, startDate, duration);
                     //Log.d("Debug", "Nombre: " + name +" longitud: "+longitude.toString()+" latitude: "+latitude.toString());
-
-
                     manuals.add(manual);
-
                 }
+
+
+            }
 
 
 

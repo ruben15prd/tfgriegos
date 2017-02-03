@@ -6,6 +6,9 @@ import android.widget.Toast;
 
 import com.ruben.connecttomysql.R;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,8 +23,8 @@ public class SeveralTimesScheduleUtils {
         List<String> errores;
         EditText nombre,duracion, inicio, fin, horas, minutos;
         String nombreStr;
-        Date startDateDt;
-        Date endDateDt;
+        Timestamp startDateDt;
+        Timestamp endDateDt;
         Integer hoursInt;
         Integer minutesInt;
         Integer duracionInt;
@@ -50,16 +53,51 @@ public class SeveralTimesScheduleUtils {
 
         }
         if(!inicio.getText().toString().isEmpty()){
-            startDateDt = new Date(Date.parse(inicio.getText().toString()));
-            Date now = new Date(System.currentTimeMillis());
+            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                    "dd-MM-yyyy");
+
+            Date parsedTimeStamp = null;
+            try {
+                parsedTimeStamp = dateFormat.parse(inicio.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            startDateDt = new Timestamp(parsedTimeStamp.getTime());
+
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+
+
+
             if(startDateDt.before(now)){
                 errores.add("La fecha de inicio no puede ser anterior a la actual");
             }
 
         }
         if(!fin.getText().toString().isEmpty()){
-            endDateDt = new Date(Date.parse(fin.getText().toString()));
-            startDateDt = new Date(Date.parse(inicio.getText().toString()));
+            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                    "dd-MM-yyyy");
+
+            Date parsedTimeStamp = null;
+            try {
+                parsedTimeStamp = dateFormat.parse(fin.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            endDateDt = new Timestamp(parsedTimeStamp.getTime());
+
+
+
+            parsedTimeStamp = null;
+            try {
+                parsedTimeStamp = dateFormat.parse(inicio.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            startDateDt = new Timestamp(parsedTimeStamp.getTime());
             if(endDateDt.before(startDateDt)){
                 errores.add("La fecha de fin no puede ser anterior a la de inicio");
             }

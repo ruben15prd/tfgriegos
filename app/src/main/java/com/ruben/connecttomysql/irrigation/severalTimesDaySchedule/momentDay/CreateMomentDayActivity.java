@@ -10,14 +10,13 @@ import android.widget.EditText;
 
 import com.ruben.connecttomysql.ConnectionUtils;
 import com.ruben.connecttomysql.R;
-import com.ruben.connecttomysql.irrigation.severalTimesDaySchedule.ListSeveralTimesDayScheduleActivity;
-import com.ruben.connecttomysql.irrigation.severalTimesDaySchedule.SeveralTimesDayScheduleUtils;
-import com.ruben.connecttomysql.model.Plot;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +33,7 @@ public class CreateMomentDayActivity extends AppCompatActivity {
 
         //Instanciamos los elementos
         momentEt = (EditText) findViewById(R.id.editText1);
-        durationEt = (EditText) findViewById(R.id.editText11);
+        durationEt = (EditText) findViewById(R.id.editText10);
 
         Button buttonAceptar = (Button) findViewById(R.id.button3);
         //Definimos el comportamiento del boton aceptar
@@ -50,10 +49,11 @@ public class CreateMomentDayActivity extends AppCompatActivity {
 
     // Ejecutamos de forma asincrona, las acciones del boton aceptar
     private class CreateMomentDaySchedule extends AsyncTask<Void,Void,Void> {
-        private Date fecha = new Date(System.currentTimeMillis());
         private Integer duracion = 0;
+        private Timestamp fecha;
 
 
+        Integer idSeveralTimesDaysSchedule =(Integer) getIntent().getSerializableExtra("idSeveralTimesDaysSchedule");
         Integer idIrrigation =(Integer) getIntent().getSerializableExtra("idIrrigation");
 
         @Override
@@ -71,7 +71,20 @@ public class CreateMomentDayActivity extends AppCompatActivity {
                         // some code #3 (Write your code here to run in UI thread)
 
                         //Obtenemos el texto de los campos que ha introducido el usuario
-                        fecha = new Date(Date.parse(momentEt.getText().toString()));
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                                "dd-MM-yyyy hh:mm:ss");
+
+                        Date parsedTimeStamp = null;
+                        try {
+                            parsedTimeStamp = dateFormat.parse(momentEt.getText().toString());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        fecha = new Timestamp(parsedTimeStamp.getTime());
+
+
                         duracion = Integer.parseInt(durationEt.getText().toString());
 
 
@@ -91,8 +104,7 @@ public class CreateMomentDayActivity extends AppCompatActivity {
                     ConnectionUtils.setStatement(st);
 
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
-                    //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud);
-                    String sql = "insert into IRRIGATIONMOMENTDAY (irrigationMoment,duration,id_severalTimesDaySchedule ) VALUES ('"+fecha+"',"+duracion+","+idIrrigation+")";
+                    String sql = "insert into IRRIGATIONMOMENTDAY (irrigationMoment,duration,id_severalTimesDaySchedule ) VALUES ('"+fecha+"',"+duracion+",'"+idSeveralTimesDaysSchedule+"')";
                     //Realizamos la consulta contra la base de datos
                     st.executeUpdate(sql);
 
@@ -119,7 +131,7 @@ public class CreateMomentDayActivity extends AppCompatActivity {
                 // Si ha ido correctamente lo llevamos a la nueva ventana
                 Intent intent = new Intent (CreateMomentDayActivity.this, ListMomentDayActivity.class);
 
-                intent.putExtra("idIrrigation", idIrrigation);
+                intent.putExtra("idIrrigation",idIrrigation );
                 startActivity(intent);
             }
 

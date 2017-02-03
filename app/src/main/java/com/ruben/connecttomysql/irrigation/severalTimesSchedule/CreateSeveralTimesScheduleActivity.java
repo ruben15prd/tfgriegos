@@ -9,13 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.ruben.connecttomysql.ConnectionUtils;
-import com.ruben.connecttomysql.model.Plot;
 import com.ruben.connecttomysql.R;
+import com.ruben.connecttomysql.model.Plot;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +35,7 @@ public class CreateSeveralTimesScheduleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_manual);
+        setContentView(R.layout.activity_edit_several_times_schedule);
 
         //Instanciamos los elementos
         nombreEt = (EditText) findViewById(R.id.editText1);
@@ -83,8 +86,40 @@ public class CreateSeveralTimesScheduleActivity extends AppCompatActivity {
                         //Obtenemos el texto de los campos que ha introducido el usuario
                         nombre = nombreEt.getText().toString();
                         duracion = Integer.parseInt(duracionEt.getText().toString());
-                        fechaInicio = new Date(Date.parse(inicioEt.toString()));
-                        fechaFin = new Date(Date.parse(finEt.toString()));
+
+
+                        if(!inicioEt.getText().toString().isEmpty()){
+                            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                                    "dd-MM-yyyy");
+
+                            Date parsedTimeStamp = null;
+                            try {
+                                parsedTimeStamp = dateFormat.parse(inicioEt.getText().toString());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            fechaInicio = new Timestamp(parsedTimeStamp.getTime());
+
+
+                        }
+
+                        if(!finEt.getText().toString().isEmpty()){
+                            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                                    "dd-MM-yyyy");
+
+                            Date parsedTimeStamp = null;
+                            try {
+                                parsedTimeStamp = dateFormat.parse(finEt.getText().toString());
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            fechaFin = new Timestamp(parsedTimeStamp.getTime());
+
+
+                        }
+
                         hora = Integer.parseInt(horaEt.getText().toString());
                         minuto = Integer.parseInt(minutoEt.getText().toString());
 
@@ -106,7 +141,7 @@ public class CreateSeveralTimesScheduleActivity extends AppCompatActivity {
 
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
                     //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud);
-                    String sql = "insert into IRRIGATION (cancelMoment,id_plot,name) VALUES ('"+null+"',"+plot.getId()+","+nombre+")";
+                    String sql = "insert into IRRIGATION (cancelMoment,id_plot,name) VALUES ("+null+","+plot.getId()+",'"+nombre+"')";
                     //Realizamos la consulta contra la base de datos
                     st.executeUpdate(sql);
 
@@ -120,10 +155,9 @@ public class CreateSeveralTimesScheduleActivity extends AppCompatActivity {
                     }else{
                         lastIdInt=0;
                     }
+                    String sql2 = "insert into SEVERALTIMESSCHEDULE (startDate,endDate,hours,minutes,duration,id_irrigation) VALUES ('"+fechaInicio+"','"+fechaFin+"',"+hora+","+minuto+","+duracion+","+lastIdInt+")";
 
-                    String sql2 = "insert into SEVERALTIMESSCHEDULE (startDate,endDate,hours,minutes,duration,id_irrigation) VALUES ('"+fechaInicio+"',"+fechaFin+","+hora+","+minuto+","+lastIdInt+")";
-
-                    st.executeUpdate(sql);
+                    st.executeUpdate(sql2);
 
 
 

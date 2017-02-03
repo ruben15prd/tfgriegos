@@ -11,23 +11,25 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.ruben.connecttomysql.ConnectionUtils;
-import com.ruben.connecttomysql.model.SeveralTimesSchedule;
-import com.ruben.connecttomysql.model.Plot;
 import com.ruben.connecttomysql.R;
+import com.ruben.connecttomysql.model.Plot;
+import com.ruben.connecttomysql.model.SeveralTimesSchedule;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ListSeveralTimesScheduleActivity extends AppCompatActivity {
     private ListView listView;
     private Integer id;
     private String name;
-    private Date cancelMoment;
-    private Date startDate;
-    private Date endDate;
+    private Timestamp cancelMoment;
+    private Timestamp startDate;
+    private Timestamp endDate;
     private Integer hours;
     private Integer minutes;
     private Integer duration;
@@ -45,7 +47,7 @@ public class ListSeveralTimesScheduleActivity extends AppCompatActivity {
         }
 
         List<SeveralTimesSchedule> riegos;
-        Statement st;
+        Statement st,st2;
 
 
         riegos = new ArrayList<SeveralTimesSchedule>();
@@ -59,6 +61,11 @@ public class ListSeveralTimesScheduleActivity extends AppCompatActivity {
 
         try{
             int userId = ConnectionUtils.getUserId();
+            final String url= "jdbc:mysql://138.68.102.13:3306/TFGRIEGOS";
+            final String user = "prueba";
+            final String pass = "irrigadino";
+            Connection con = DriverManager.getConnection(url,user,pass);
+            st2 = con.createStatement();
             String sql = "select * from IRRIGATION where id_plot="+plot.getId();
             //Realizamos la consulta contra la base de datos
             final ResultSet rs = st.executeQuery(sql);
@@ -68,24 +75,24 @@ public class ListSeveralTimesScheduleActivity extends AppCompatActivity {
             while(rs.next()) {
                 SeveralTimesSchedule riego;
                 id = rs.getInt(1);
-                name = rs.getString(4);
-                cancelMoment = rs.getDate(3);
-
+                name = rs.getString(5);
+                cancelMoment = rs.getTimestamp(3);
                 String sql2 = "select * from SEVERALTIMESSCHEDULE where id_irrigation="+id;
-                final ResultSet rs2 = st.executeQuery(sql);
+                final ResultSet rs2 = st2.executeQuery(sql2);
 
-                startDate = rs2.getDate(3);
-                endDate = rs2.getDate(4);
-                hours = rs2.getInt(5);
-                minutes = rs2.getInt(6);
-                duration = rs2.getInt(7);
+                while(rs2.next()) {
+                    startDate = rs2.getTimestamp(3);
+                    endDate = rs2.getTimestamp(4);
+                    hours = rs2.getInt(5);
+                    minutes = rs2.getInt(6);
+                    duration = rs2.getInt(7);
 
-                riego = new SeveralTimesSchedule(id, name, cancelMoment, startDate, endDate, hours, minutes, duration);
-                //Log.d("Debug", "Nombre: " + name +" longitud: "+longitude.toString()+" latitude: "+latitude.toString());
+                    riego = new SeveralTimesSchedule(id, name, cancelMoment, startDate, endDate, hours, minutes, duration);
 
 
-                riegos.add(riego);
 
+                    riegos.add(riego);
+                }
             }
 
 

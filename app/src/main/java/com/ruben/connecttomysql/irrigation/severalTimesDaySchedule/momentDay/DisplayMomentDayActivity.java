@@ -1,22 +1,11 @@
 package com.ruben.connecttomysql.irrigation.severalTimesDaySchedule.momentDay;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.ruben.connecttomysql.ConnectionUtils;
 import com.ruben.connecttomysql.R;
-import com.ruben.connecttomysql.model.Irrigation;
 import com.ruben.connecttomysql.model.IrrigationMomentDay;
-import com.ruben.connecttomysql.model.SeveralTimesDaySchedule;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.util.Date;
 
 public class DisplayMomentDayActivity extends AppCompatActivity {
     // Declaramos los elementos

@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.ruben.connecttomysql.ConnectionUtils;
-import com.ruben.connecttomysql.model.Plot;
 import com.ruben.connecttomysql.R;
+import com.ruben.connecttomysql.model.Plot;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -91,7 +92,7 @@ public class CreateManualActivity extends AppCompatActivity {
 
                     //Log.d("Debug", "Antes de la consulta el usuario: " + nomEditText);
                     //Log.d("Debug", "Nombre: " +nombre +" latitud: "+latitud+ " longitud: "+longitud);
-                    String sql = "insert into IRRIGATION (cancelMoment,id_plot,name) VALUES ('"+null+"',"+plot.getId()+","+nombre+")";
+                    String sql = "insert into IRRIGATION (cancelMoment,id_plot,name) VALUES ("+null+","+plot.getId()+",'"+nombre+"')";
                     //Realizamos la consulta contra la base de datos
                     st.executeUpdate(sql);
 
@@ -105,10 +106,14 @@ public class CreateManualActivity extends AppCompatActivity {
                     }else{
                         lastIdInt=0;
                     }
+                    Log.d("Debug", "Antes de la consulta el usuario: " + lastIdInt);
 
-                    String sql2 = "insert into MANUAL (startDate,duration,id_irrigation) VALUES ('"+fechaInicio+"',"+duracion+","+lastIdInt+")";
+                    //Parseamos la fecha para poder introducirlo en la BD
+                    java.sql.Timestamp fechaInicioDB = new java.sql.Timestamp(fechaInicio.getTime());
 
-                    st.executeUpdate(sql);
+                    String sql2 = "insert into MANUAL (startDate,duration,id_irrigation) VALUES ('"+fechaInicioDB+"',"+duracion+","+lastIdInt+")";
+
+                    st.executeUpdate(sql2);
 
 
 
@@ -146,5 +151,5 @@ public class CreateManualActivity extends AppCompatActivity {
         }
     }
 
-    }
+}
 

@@ -1,6 +1,7 @@
 package com.ruben.connecttomysql.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -10,14 +11,14 @@ import java.util.Date;
 public class Irrigation implements Serializable{
     private Integer id;
     private String name;
-    private Date cancelMoment;
+    private Timestamp cancelMoment;
 
     public Irrigation(){
         super();
     }
 
 
-    public Irrigation(Integer id, String name, Date cancelMoment){
+    public Irrigation(Integer id, String name, Timestamp cancelMoment){
         this.id = id;
         this.name = name;
         this.cancelMoment = cancelMoment;
@@ -46,7 +47,7 @@ public class Irrigation implements Serializable{
         return cancelMoment;
     }
 
-    public void setCancelMoment(Date cancelMoment) {
+    public void setCancelMoment(Timestamp cancelMoment) {
         this.cancelMoment = cancelMoment;
     }
 

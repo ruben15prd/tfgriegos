@@ -22,8 +22,8 @@ public class ManualUtils {
         Integer duracionInt;
 
         errores = new ArrayList<String>();
-        nombre = (EditText) activity.findViewById(R.id.editText5);
-        duracion = (EditText) activity.findViewById(R.id.editText7);
+        nombre = (EditText) activity.findViewById(R.id.editText1);
+        duracion = (EditText) activity.findViewById(R.id.editText2);
 
         nombreStr = nombre.getText().toString();
 
