@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.ruben.connecttomysql.ConnectionUtils;
 import com.ruben.connecttomysql.R;
 import com.ruben.connecttomysql.irrigation.severalTimesDaySchedule.momentDay.ListMomentDayActivity;
+import com.ruben.connecttomysql.irrigation.severalTimesSchedule.DisplaySeveralTimesScheduleActivity;
+import com.ruben.connecttomysql.irrigation.severalTimesSchedule.EditSeveralTimesScheduleActivity;
 import com.ruben.connecttomysql.model.SeveralTimesDaySchedule;
 
 import java.sql.Connection;
@@ -117,6 +119,18 @@ public class DisplaySeveralTimesDayScheduleActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Intent intent = new Intent(DisplaySeveralTimesDayScheduleActivity.this, DisplaySeveralTimesDayScheduleActivity.class);
+                intent.putExtra("riego", riego);
+                startActivity(intent);
+            }
+        });
+
+        Button buttonEditar = (Button) findViewById(R.id.button14);
+
+
+        buttonEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplaySeveralTimesDayScheduleActivity.this, EditSeveralTimesDayScheduleActivity.class);
                 intent.putExtra("riego", riego);
                 startActivity(intent);
             }

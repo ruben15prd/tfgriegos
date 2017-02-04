@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.ruben.connecttomysql.ConnectionUtils;
 import com.ruben.connecttomysql.R;
 import com.ruben.connecttomysql.model.SeveralTimesSchedule;
+import com.ruben.connecttomysql.plot.DisplayPlotActivity;
+import com.ruben.connecttomysql.plot.EditPlotActivity;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -100,6 +102,18 @@ public class DisplaySeveralTimesScheduleActivity extends AppCompatActivity {
         horaTv.setText(riego.getHours().toString());
         minutoTv.setText(riego.getMinutes().toString());
         duracionTv.setText(riego.getDuration().toString());
+
+        Button buttonEditar = (Button) findViewById(R.id.button13);
+
+
+        buttonEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplaySeveralTimesScheduleActivity.this, EditSeveralTimesScheduleActivity.class);
+                intent.putExtra("riego", riego);
+                startActivity(intent);
+            }
+        });
 
         Button buttonCancelar = (Button) findViewById(R.id.button10);
         buttonCancelar.setOnClickListener(new View.OnClickListener() {
